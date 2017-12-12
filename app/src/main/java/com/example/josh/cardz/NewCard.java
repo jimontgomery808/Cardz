@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -18,7 +19,12 @@ public class NewCard extends AppCompatActivity
     private EditText definition;
     private Button searchBttn;
     private Button addButton;
+    private Button saveButton;
     private List<Card> cardList = new ArrayList<>();
+    private int cardCount;
+    private String lastCard;
+    private TextView cardCountTextView;
+    private TextView previous;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,10 +36,16 @@ public class NewCard extends AppCompatActivity
         String subject = getIntent().getStringExtra("subject");
         this.setTitle(title + "(" + subject + ")");
 
+        cardCount = 0;
+
         answer = (EditText) findViewById(R.id.answer);
         searchBttn = (Button) findViewById(R.id.searchView);
         addButton = (Button) findViewById(R.id.addButton);
         definition = (EditText) findViewById(R.id.definition);
+        cardCountTextView = (TextView) findViewById(R.id.card_count);
+        saveButton = (Button) findViewById(R.id.saveButton);
+        previous = (TextView) findViewById(R.id.previous);
+        setCount();
 
 
         searchBttn.setOnClickListener(new View.OnClickListener()
@@ -66,9 +78,12 @@ public class NewCard extends AppCompatActivity
                     card.setTerm(answer.getText().toString());
                     card.setDefinition(definition.getText().toString().trim());
                     cardList.add(card);
+                    lastCard = answer.getText().toString();
                     answer.setText("");
                     definition.setText("");
                     Toast.makeText(getBaseContext(),"Added card to collection",Toast.LENGTH_SHORT).show();
+                    cardCount ++;
+                    setCount();
 
                 }
                 else
@@ -81,5 +96,26 @@ public class NewCard extends AppCompatActivity
                 }
             }
         });
+    }
+
+    public void setCount()
+    {
+        String countMessage = "";
+        String previousMessage = "";
+        if(cardCount == 1)
+        {
+            countMessage = Integer.toString(cardCount) + " card in this set";
+        }
+        else
+        {
+            countMessage = Integer.toString(cardCount) + " cards in this set";
+        }
+        if(cardCount > 0)
+        {
+            previousMessage += "Previous: " + lastCard;
+            previous.setText(previousMessage);
+        }
+
+        cardCountTextView.setText(countMessage);
     }
 }
