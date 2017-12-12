@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/primaryTextColor"
+                android:orientation="vertical"
+                android:weightSum="1">
+    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/answerTextView"
+    android:text="CARD ANSWER"
+    android:gravity="center_horizontal"
+    android:textColor="@color/icons"
+    android:textStyle="bold"
+    android:layout_marginTop="30dp"
+    android:textSize="20sp"
+    android:layout_weight=".10"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/answer"
+        android:layout_weight=".05"
+        android:textColor="@color/colorAccent"
+        android:textAllCaps="true"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textSize="20sp"
+        android:background="@drawable/edit_text"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchView"
+        android:text="             Google Search"
+        android:textColor="@color/icons"
+        android:textStyle="bold"
+        android:background="@drawable/gradient"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:drawableRight="@drawable/ic_search_black_24dp"
+        android:paddingRight="20dp">
+
+    </Button>
+
+    <com.example.josh.cardz.LinedEditText
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/definition"
+        android:background="@color/icons"
+        android:layout_weight=".5"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Defintion"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="20sp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient"
+        android:id="@+id/addButton"
+        android:text="                    ADD CARD"
+        android:textColor="@color/icons"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingRight="20dp"
+        android:drawableRight="@drawable/ic_add_black_24dp_small"
+        android:textAlignment="center"/>
+
+
+
+</LinearLayout>
