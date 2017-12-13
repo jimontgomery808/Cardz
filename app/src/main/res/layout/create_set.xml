@@ -1,77 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/primaryTextColor"
                 android:orientation="vertical"
-                android:weightSum="1">
+              android:background="@color/accent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/primary">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/editName"
-            android:background="@drawable/edit_text"
-            android:hint="GIVE YOUR CARDZ A TITLE"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:gravity="center_horizontal|center_vertical"
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_text"
+            android:backgroundTint="@color/primary"
+            android:hint="+ enter title here"
             android:inputType="text|textCapSentences"
             android:maxLines="1"
+            android:textColor="#FFFF"/>
+    </LinearLayout>
 
-            android:textAlignment="center"/>
-
-    <AutoCompleteTextView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:id="@+id/subjectText"
-        android:background="@drawable/edit_text"
-        android:hint="SUBJECT"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_below="@id/editName"
-        android:gravity="center_horizontal|center_vertical"
-        android:textColor="@color/colorAccent"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:maxLines="1"
-        android:inputType="text"
-        android:imeOptions="actionDone">
-
-
-    </AutoCompleteTextView>
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/subjectText"
-        android:background="@drawable/gradient"
-        android:id="@+id/saveButton"
-        android:layout_marginTop="50dp"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif"
-        android:textSize="20sp"
-        android:textColor="@color/icons"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:text="CREATE SET"/>
-    <Button
+        android:orientation="vertical"
+        android:background="@color/primary_light"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subject"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/subject_text"
+            android:backgroundTint="@color/primary_light"
+            android:hint="+ enter subject here"
+            android:textColor="#FFFF"
+            android:maxLines="1"
+            android:inputType="text|textCapSentences"
+            android:imeOptions="actionDone"/>
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/saveButton"
-        android:background="@drawable/gradient"
-        android:id="@+id/cancelButton"
-        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        android:background="@color/primary"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="To Do"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFF"
+            android:backgroundTint="@color/primary"
+            android:hint="+ ..."/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/primary_light"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="To Do"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary_light"
+            android:hint="+ ..."/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/primary_text"
+        android:text="WRITE SOMETHING HERE"
+        android:textColor="@color/icons_bg"
         android:textStyle="bold"
-        android:fontFamily="sans-serif"
         android:textSize="20sp"
-        android:textColor="@color/icons"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:text="CANCEL"/>
+        android:layout_gravity="center"
+        android:textAlignment="center">
 
+    </TextView>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/primary_text"
+        android:weightSum="1">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/back_bttn"
+            android:background="@drawable/button_press_release_new_card"
+            android:layout_gravity="bottom"
+            android:text="BACK"
+            android:textStyle="bold"
+            android:textColor="#FFFF"
+            android:layout_weight=".5"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/next_bttn"
+            android:text="NEXT"
+            android:textStyle="bold"
+            android:textColor="#FFFF"
+            android:background="@drawable/button_press_release_new_card"
+            android:layout_weight=".5"/>
+    </LinearLayout>
+
+</LinearLayout>

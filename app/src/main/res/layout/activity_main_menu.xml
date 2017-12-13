@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/primaryTextColor"
+              android:background="@color/accent"
               android:orientation="vertical"
 
               android:weightSum="1">
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/myCardz"
-            android:background="@drawable/gradient"
+            android:background="@color/primary_dark"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginLeft="4dp"
@@ -28,12 +28,12 @@
             android:textSize="20sp"
             android:paddingTop="20dp"
             android:drawableTop="@drawable/ic_apps_black_24dp"
-        android:textColor="@color/icons"/>
+        android:textColor="@color/icons_bg"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/newCardz"
-            android:background="@drawable/gradient"
+            android:background="@color/primary_dark"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginLeft="4dp"
@@ -45,7 +45,7 @@
             android:fontFamily="sans-serif"
             android:textSize="20sp"
             android:drawableTop="@drawable/ic_add_black_24dp"
-            android:textColor="@color/icons"/>
+            android:textColor="@color/icons_bg"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/quiz"
-            android:background="@drawable/gradient"
+            android:background="@color/primary_light"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginLeft="4dp"
@@ -68,12 +68,12 @@
             android:textSize="20sp"
             android:paddingTop="20dp"
             android:drawableTop="@drawable/ic_question_answer_black_24dp"
-            android:textColor="@color/icons"/>
+            android:textColor="@color/primary_text"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/scores"
-            android:background="@drawable/gradient"
+            android:background="@color/primary_light"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginLeft="4dp"
@@ -85,7 +85,7 @@
             android:fontFamily="sans-serif"
             android:textSize="20sp"
             android:drawableTop="@drawable/ic_format_list_numbered_black_24dp"
-            android:textColor="@color/icons"/>
+            android:textColor="@color/primary_text"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -97,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/settings"
-            android:background="@drawable/gradient"
+            android:background="@color/primary_dark"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginLeft="4dp"
@@ -109,12 +109,12 @@
             android:fontFamily="sans-serif"
             android:textSize="20sp"
             android:drawableTop="@drawable/ic_settings_black_24dp"
-            android:textColor="@color/icons"/>
+            android:textColor="@color/icons_bg"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/about"
-            android:background="@drawable/gradient"
+            android:background="@color/primary_dark"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginLeft="4dp"
@@ -126,6 +126,6 @@
             android:textStyle="bold"
             android:paddingTop="20dp"
             android:drawableTop="@drawable/ic_wb_sunny_black_24dp"
-            android:textColor="@color/icons"/>
+            android:textColor="@color/icons_bg"/>
     </LinearLayout>
 </LinearLayout>

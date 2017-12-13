@@ -1,8 +1,6 @@
 package com.example.josh.cardz;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -183,10 +181,10 @@ public class CreateSet extends AppCompatActivity
                     "World religions",
                     "Zoology"
     };
-    private EditText setName;
+    private EditText title;
     private AutoCompleteTextView subject;
-    private Button save;
-    private Button cancel;
+    private Button next;
+    private Button back;
     private List<String> subjectList = new ArrayList<>(Arrays.asList(SUBJECTS));
     private ArrayAdapter<String> adapter;
 
@@ -198,25 +196,23 @@ public class CreateSet extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_set);
 
-        setName = (EditText) findViewById(R.id.editName);
-        subject = (AutoCompleteTextView) findViewById(R.id.subjectText);
+        title = (EditText) findViewById(R.id.title_text);
+        subject = (AutoCompleteTextView) findViewById(R.id.subject_text);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, subjectList);
         subject.setAdapter(adapter);
 
-        save = (Button) findViewById(R.id.saveButton);
-        cancel = (Button) findViewById(R.id.cancelButton);
+        next = (Button) findViewById(R.id.next_bttn);
+        back = (Button) findViewById(R.id.back_bttn);
 
-        save.setOnClickListener(new View.OnClickListener()
+        next.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                save.setBackgroundColor(Color.LTGRAY);
-                save.setTextColor(Color.BLACK);
-                if(!setName.getText().toString().equals("") && !subject.getText().toString().equals(""))
+                if(!title.getText().toString().equals("") && !subject.getText().toString().equals(""))
                 {
                     Intent intent = new Intent(CreateSet.this, NewCard.class);
-                    intent.putExtra("set_name", setName.getText().toString());
+                    intent.putExtra("set_name", title.getText().toString());
                     intent.putExtra("subject", subject.getText().toString());
                     startActivity(intent);
                 }
@@ -227,13 +223,11 @@ public class CreateSet extends AppCompatActivity
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener()
+        back.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                cancel.setBackgroundColor(Color.LTGRAY);
-                cancel.setTextColor(Color.BLACK);
                 finish();
             }
         });
@@ -245,14 +239,6 @@ public class CreateSet extends AppCompatActivity
     public void onResume()
     {
         super.onResume();
-        int[] colors = {Color.parseColor("#42A5F5"),Color.parseColor("#1565C0")};
-
-        //create a new gradient color
-        GradientDrawable gd = new GradientDrawable(
-                GradientDrawable.Orientation.TOP_BOTTOM, colors);
-        //apply the button background to newly created drawable gradient
-        save.setBackground(gd);
-        save.setTextColor(Color.WHITE);
     }
 
 

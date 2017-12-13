@@ -1,8 +1,13 @@
 package com.example.josh.cardz;
 
+
 import android.app.SearchManager;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -15,11 +20,13 @@ import java.util.List;
 
 public class NewCard extends AppCompatActivity
 {
-    private EditText answer;
-    private EditText definition;
+    private EditText term;
+    private LinedEditText definition;
     private Button searchBttn;
     private Button addButton;
     private Button saveButton;
+    private Button pasteButton;
+    private Button clearButton;
     private List<Card> cardList = new ArrayList<>();
     private int cardCount;
     private String lastCard;
@@ -38,13 +45,16 @@ public class NewCard extends AppCompatActivity
 
         cardCount = 0;
 
-        answer = (EditText) findViewById(R.id.answer);
-        searchBttn = (Button) findViewById(R.id.searchView);
-        addButton = (Button) findViewById(R.id.addButton);
-        definition = (EditText) findViewById(R.id.definition);
+        term              = (EditText) findViewById(R.id.answer);
+        searchBttn        = (Button) findViewById(R.id.searchView);
+        addButton         = (Button) findViewById(R.id.addButton);
+        pasteButton       = (Button) findViewById(R.id.paste_bttn);
+        clearButton       = (Button) findViewById(R.id.clear_bttn);
+        saveButton        = (Button) findViewById(R.id.saveButton);
+        definition        = (LinedEditText) findViewById(R.id.definition);
         cardCountTextView = (TextView) findViewById(R.id.card_count);
-        saveButton = (Button) findViewById(R.id.saveButton);
-        previous = (TextView) findViewById(R.id.previous);
+        previous          = (TextView) findViewById(R.id.previous);
+
         setCount();
 
 
@@ -53,16 +63,22 @@ public class NewCard extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                try
+                if(term.getText().toString().equals(""))
                 {
-                    Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-                    String term = answer.getText().toString() + " definition";
-                    intent.putExtra(SearchManager.QUERY, term);
-                    startActivity(intent);
+                    Toast.makeText(getBaseContext(),"Search field is empty",Toast.LENGTH_SHORT).show();
                 }
-                catch (Exception e)
+                else
                 {
-                    // TODO: handle exception
+                    try
+                    {
+                        Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                        String query = term.getText().toString() + " definition";
+                        intent.putExtra(SearchManager.QUERY, query);
+                        startActivity(intent);
+                    } catch (Exception e)
+                    {
+                        // TODO: handle exception
+                    }
                 }
             }
         });
@@ -72,14 +88,14 @@ public class NewCard extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                if(!answer.getText().toString().equals("") && !definition.getText().toString().equals(""))
+                if(!term.getText().toString().equals("") && !definition.getText().toString().equals(""))
                 {
                     Card card = new Card();
-                    card.setTerm(answer.getText().toString());
+                    card.setTerm(term.getText().toString());
                     card.setDefinition(definition.getText().toString().trim());
                     cardList.add(card);
-                    lastCard = answer.getText().toString();
-                    answer.setText("");
+                    lastCard = term.getText().toString();
+                    term.setText("");
                     definition.setText("");
                     Toast.makeText(getBaseContext(),"Added card to collection",Toast.LENGTH_SHORT).show();
                     cardCount ++;
@@ -88,15 +104,37 @@ public class NewCard extends AppCompatActivity
                 }
                 else
                 {
-                    Toast.makeText(getBaseContext(),answer.getText().toString(),Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getBaseContext(),definition.getText().toString(),Toast.LENGTH_SHORT).show();
-
-
-                    Toast.makeText(getBaseContext(),"Please enter an answer and definition for this card",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(),"Please enter a term and definition for this card",Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        pasteButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(!definition.equals(""))
+                {
+                    definition.setText("");
+                }
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                ClipData clip = clipboard.getPrimaryClip();
+                clipboard.setPrimaryClip(clip);
+                definition.setText(clip.getItemAt(0).getText());
+            }
+        });
+
+        clearButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                definition.setText(null);
+            }
+        });
     }
+
 
     public void setCount()
     {
@@ -118,4 +156,32 @@ public class NewCard extends AppCompatActivity
 
         cardCountTextView.setText(countMessage);
     }
+
+    @Override
+    public void onBackPressed()
+    {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("EXITING SCREEN");
+        alertDialogBuilder.setMessage("Any unsaved data will be lost, do you wish to go back?").setCancelable(false).setPositiveButton("Yes",new DialogInterface.OnClickListener()
+        {
+                    public void onClick(DialogInterface dialog,int id)
+                    {
+                        finish();
+                    }
+        }).setNegativeButton("No",new DialogInterface.OnClickListener()
+        {
+                    public void onClick(DialogInterface dialog,int id)
+                    {
+                        dialog.cancel();
+                    }
+        });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
+
 }

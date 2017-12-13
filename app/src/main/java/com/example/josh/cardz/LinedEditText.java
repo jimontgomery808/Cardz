@@ -39,13 +39,13 @@ public class LinedEditText extends android.support.v7.widget.AppCompatEditText
         Paint paint = mPaint;
         int baseline = getLineBounds(0, r);//first line
         Paint pink = new Paint();
-        pink.setColor(Color.parseColor("#FFC0CB"));
+        pink.setColor(Color.parseColor("#E91E63"));
 
-        canvas.drawLine(r.left, baseline + 1, r.right, baseline + 1, pink);
+        canvas.drawLine(r.left, baseline, r.right, baseline, pink);
         baseline += getLineHeight();
         for (int i = 1; i <= count; i++)
         {
-            canvas.drawLine(r.left, baseline + 1, r.right, baseline + 1, paint);
+            canvas.drawLine(r.left, baseline, r.right, baseline, paint);
             baseline += getLineHeight();//next line
         }
 

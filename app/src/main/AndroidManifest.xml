@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".CreateSet"
-            android:label="Create New Card Set"
+            android:label="Set Info"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait">
         </activity>
